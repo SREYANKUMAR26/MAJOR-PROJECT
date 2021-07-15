@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<title>To Do List</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+    <h1>Priority Based To Do List</h1>
+    <style>
+        body {
+          background-image: url('https://images.unsplash.com/photo-1626009411640-fd2b3f17a497?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+          background-size:cover;
+        }
+        </style>
+
+<div class="w3-container" style="margin-top: 26px;">
+    <form  id="todo" onsubmit="return checkRegistration(name.value,difficult1.value)" action="#">
+
+        <input type="text" id="name" name="name" required
+        minlength="1" maxlength="1000" size="30">
+        <br>
+        <div>
+            <div id="Difficulty" style="margin-top: 5px;">
+            <div class="w3-bar w3-black">
+ Difficulty level
+            </div>
+ <select name="difficult1" id="difficult1">
+     <option value="Low">low</option>
+     <option value="Medium">medium</option>
+     <option value="High">high</option>
+ </select>
+ <br>
+ <button><input type="button" style="background-color:black;color:white;width:100px;
+    height:25px;" value="Click Me!!"></button>
+</br>
+    </form>
+</div>
+<div>
+<div id="taskdesc" style="margin-top: 50px;">
+<div class="w3-bar w3-black">
+Task Description
+</div>
+<div id ="taskdet" class="w3-container">
+
+</div>
+</div>
+</div>
+<div class="w3-bar w3-black" style="margin-top: 68px ;">
+  <button class="w3-bar-item w3-button" onclick="openCity('Low')">Low</button>
+  <button class="w3-bar-item w3-button" onclick="openCity('Medium')">Medium</button>
+  <button class="w3-bar-item w3-button" onclick="openCity('High')">High</button>
+</div>
+
+<div id="Low" class="w3-container city">
+
+</div>
+
+<div id="Medium" class="w3-container city" style="display:none">
+
+</div>
+
+<div id="High" class="w3-container city" style="display:none">
+
+</div>
+
+<script>
+    var low=[];
+    var medium=[];
+    var high=[];
+    var task=[];
+function openCity(cityName) {
+
+  var i;
+  var x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  document.getElementById(cityName).style.display = "block";
+}
+function checkRegistration(n,d){
+    task.push({"name":n,"priority":d})
+    //debugger;
+   // console.log(n,d)
+    var x;
+    var tabledata='';
+
+    switch (d){
+        case 'Low' :
+            x=document.getElementById("Low");
+            this.low.push(n)
+            for(let i=0;i<this.low.length;i++)
+{
+    j=i+1
+tabledata+="<tr><td>"+j+"</td><td>"+this.low[i]+"</td></tr>"
+}
+            break;
+            case 'Medium':
+            x=document.getElementById("Medium");
+            this.medium.push(n)
+            for(let i=0;i<this.medium.length;i++)
+{
+    j=i+1
+tabledata+="<tr><td>"+j+"</td><td>"+this.medium[i]+"</td></tr>"
+}
+            break;
+            case 'High':
+            x=document.getElementById("High");
+            this.high.push(n)
+            for(let i=0;i<this.high.length;i++)
+{
+    j=i+1
+tabledata+="<tr><td>"+j+"</td><td>"+this.high[i]+"</td></tr>"
+}
+            break;
+    }
+
+
+//var x =
+//this.names.push(n+d)
+
+
+x.innerHTML=`<table>
+    <thead>
+    <th>S.no</th>
+    <th>Task Desc</th>
+    </thead>
+    <tbody>
+        <tr>`+tabledata+`
+
+            </tr>
+        </tbody>`
+
+
+   +`</table>`
+   // alert("submitted")
+
+  //console.log(this.names)
+
+
+  var taskdata='';
+  var y=document.getElementById('taskdet');
+ // let color="yellow"
+  this.task.map(o=>{
+
+
+      taskdata+=`<tr class="taskd"><td>`+o.name+`</td><td class="priority">`+ o.priority+
+
+        '</td></tr>'
+
+  })
+
+
+y.innerHTML=`<table>
+    <thead>
+        <th>Task Desc </th>
+        <th> Priority </th>
+        </thead>
+        <tbody><tr>`+taskdata+`</tr></tbody>
+    </table>`
+ //  console.log(document.querySelectorAll("taskd"))
+var domel=document.getElementsByClassName("taskd");
+//debugger;
+for(var i = 0; i < domel.length; i++){
+ var td=document.getElementsByClassName("priority")[i].innerText
+    switch (td) {
+        case "Low":
+        domel[i].style.backgroundColor = "green";
+        break;
+        case "Medium":
+        domel[i].style.backgroundColor = "yellow";
+        break;
+        case "High":
+        domel[i].style.backgroundColor = "red";
+        break;
+        default:
+        domel[i].style.backgroundColor = "white";
+        break;
+    }
+
+
+    }
+  document.getElementById("todo").reset();
+  return false
+}
+</script>
+
+</body>
+</html>
